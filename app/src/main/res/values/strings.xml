@@ -4,5 +4,6 @@
 
     <!-- CHANGE THIS STRING TO THE SAME AS YOUR THEMENAME IN THE RAW FOLDER -->
     <string name="themename">synergytest55</string>
+    <string name="themename1">synergytest551</string>
 
 </resources>

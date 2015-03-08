@@ -24,6 +24,7 @@ public class Wrapper_Activity extends Activity {
     static final String TAG = "copyingFile";
 
     Button button;
+    Button1 button1;
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -37,6 +38,16 @@ public class Wrapper_Activity extends Activity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 runtask1();
+            }
+        });
+
+        button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                runtask2();
             }
         });
     }
@@ -54,6 +65,82 @@ public class Wrapper_Activity extends Activity {
             String finalname = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + themename + ".zip";
 
             int id = this.getResources().getIdentifier(themename, "raw", this.getPackageName());
+
+            // COPIES THEME FILE TO SDCARD FOLDER
+            InputStream in = getResources().openRawResource(id);
+            FileOutputStream out = null;
+            try {
+                out = new FileOutputStream(finalname);
+            } catch (FileNotFoundException e) {
+                Log.e(TAG, "fileoutputstream is null", e);
+            }
+            byte[] buff = new byte[1024];
+            int read = 0;
+
+            try {
+                try {
+                    while ((read = in.read(buff)) > 0) {
+                        if (out != null) {
+                            out.write(buff, 0, read);
+                        }
+                    }
+                } catch (IOException e) {
+                    Log.e(TAG, "out write is null", e);
+                }
+            } finally {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "in is null", e);
+                }
+
+                try {
+                    if (out != null) {
+                        out.close();
+                    }
+                } catch (IOException e) {
+                    Log.e(TAG, "out is null", e);
+                }
+            }
+
+            finish();
+
+            Intent LaunchIntent = getPackageManager()
+                    .getLaunchIntentForPackage("com.lovejoy777.rroandlayersmanager");
+            startActivity(LaunchIntent);
+
+        } else {
+
+            // IF LAYERS MANAGER IS NOT INSTALLED LAUNCH THE PLAYSTORE TO DOWNLOAD
+            Toast.makeText(Wrapper_Activity.this, "Layers Manager is not installed\n" +
+                    "on your device", Toast.LENGTH_LONG).show();
+
+            final String appPackageName = "com.lovejoy777.rroandlayersmanager"; // getPackageName() from Context or Activity object
+            try {
+
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            }
+
+            catch (android.content.ActivityNotFoundException anfe) {
+
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        }
+    }
+
+    public void runtask2() {
+
+        // IF LAYERS MANAGER IS INSTALLED LAUNCH IT
+        boolean installed  =   appInstalledOrNot("com.lovejoy777.rroandlayersmanager");
+        if(installed) {
+
+            // THEME NAME CHANGE THIS TO YOUR THEME NAME
+            String themename = red;
+
+            // FINAL PATH & NAME
+            String finalname = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + themename + ".zip";
+
+            int id = this.getResources().getIdentifier(themename, "raw1", this.getPackageName());
 
             // COPIES THEME FILE TO SDCARD FOLDER
             InputStream in = getResources().openRawResource(id);
