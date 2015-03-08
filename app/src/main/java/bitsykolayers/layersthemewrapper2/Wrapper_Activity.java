@@ -111,20 +111,8 @@ public class Wrapper_Activity extends Activity {
 
         } else {
 
-            // IF LAYERS MANAGER IS NOT INSTALLED LAUNCH THE PLAYSTORE TO DOWNLOAD
-            Toast.makeText(Wrapper_Activity.this, "Layers Manager is not installed\n" +
-                    "on your device", Toast.LENGTH_LONG).show();
+        rundownload();
 
-            final String appPackageName = "com.lovejoy777.rroandlayersmanager"; // getPackageName() from Context or Activity object
-            try {
-
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-            }
-
-            catch (android.content.ActivityNotFoundException anfe) {
-
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
-            }
         }
     }
 
@@ -187,20 +175,24 @@ public class Wrapper_Activity extends Activity {
 
         } else {
 
-            // IF LAYERS MANAGER IS NOT INSTALLED LAUNCH THE PLAYSTORE TO DOWNLOAD
-            Toast.makeText(Wrapper_Activity.this, "Layers Manager is not installed\n" +
-                    "on your device", Toast.LENGTH_LONG).show();
+        rundownload();
 
-            final String appPackageName = "com.lovejoy777.rroandlayersmanager"; // getPackageName() from Context or Activity object
-            try {
+        }
+    }
 
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-            }
+    public void rundownload() {
 
-            catch (android.content.ActivityNotFoundException anfe) {
+        // IF LAYERS MANAGER IS NOT INSTALLED LAUNCH THE PLAYSTORE TO DOWNLOAD
+        Toast.makeText(Wrapper_Activity.this, "Layers Manager is not installed\n" +
+                "on your device", Toast.LENGTH_LONG).show();
 
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
-            }
+        final String appPackageName = "com.lovejoy777.rroandlayersmanager"; // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        }
+
+        catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
         }
     }
 
