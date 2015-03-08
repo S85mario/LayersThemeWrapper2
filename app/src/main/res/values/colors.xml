@@ -1,0 +1,8 @@
+<resources>
+
+    <color name="dark_primary">#424242</color>
+    <color name="dark_accent">#424242</color>
+    <color name="dark_primary_dark">#212121</color>
+    <color name="dark_theme_bg">#ff131212</color>
+
+</resources>

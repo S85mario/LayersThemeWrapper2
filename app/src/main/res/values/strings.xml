@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Layers Theme Wrapper</string>
+    <string name="app_name">Deathly Themes</string>
 
 
     <!-- CHANGE THIS STRING TO THE SAME AS YOUR THEMENAME IN THE RAW FOLDER -->
-    <string name="themename">synergytest55</string>
-    <string name="themename1">synergytest551</string>
+    <string name="themename">Red</string>
+    <string name="themename1">Green</string>
+    <string name="themename2">Orange</string>
 
 </resources>
